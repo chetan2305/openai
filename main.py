@@ -6,10 +6,17 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+@tool
+def calculator(a: float, b: float) -> str:
+     """useful for performing basic arithmeric caluculations with numbers"""
+     print("Tool has been called")
+     return f"The sum of {a} and {b} is {a +  b}" 
+
+
 def main():
     model =ChatOpenAI(temperature=0)
 
-    tools = []
+    tools = [calculator]
     agent_executor = create_react_agent(model, tools)
 
     print("Welcome! I'm your AI assistant. Type 'quite' to exit.")
